@@ -1,0 +1,31 @@
+server:
+  servlet:
+    context-path:
+  port: 8080
+  session-timeout: 30
+  uri-encoding: UTF-8
+
+logging:
+  config: classpath:log4j2.xml
+
+spring:
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver # 指定驱动
+    url: 
+    username: intern_test # User
+    password: 123456 # PWD
+    type: com.zaxxer.hikari.HikariDataSource # 指定连接池实现
+    hikari:
+      maximum-pool-size: 5 # 池的核心大小
+      auto-commit: false # 是否自动提交
+      idle-timeout: 30000 # 句柄超时
+      pool-name: HikariConnectionPool # 连接池名称
+      max-lifetime: 1800000 # 空闲连接最大的存活时间
+      connection-timeout: 30000 # 连接超时时间
+      connection-test-query: "SELECT 1" # 测试语句
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true # 开启驼峰命名转换
+  mapper-locations: "classpath:mapper/*Mapper.xml"
+  type-aliases-package: com.newegg.mis.mps.blog.pojo

@@ -1,0 +1,9 @@
+.loginForm{
+    display: flex;
+    flex-direction: column;
+}
+
+.btn {
+    width: 90px;
+    margin-top: 5px;
+}
