@@ -11,7 +11,7 @@ logging:
 spring:
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver # 指定驱动
-    url: 
+    url: jdbc:sqlserver://10.16.78.26:4433;databasename=Intern_test;sendStringParametersAsUnicode=false # JDBC数据库连接字符串
     username: intern_test # User
     password: 123456 # PWD
     type: com.zaxxer.hikari.HikariDataSource # 指定连接池实现
