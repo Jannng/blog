@@ -2,7 +2,7 @@ use Intern_test;
 
 CREATE TABLE jt1n.[blog_user](
 	user_id bigint identity(1,1) primary key not null,
- 	user_account char(10) not null,
+ 	user_account varchar(10) not null,
 	user_password varchar(20) not null,
 	user_type varchar(10) default 'user'
 )
@@ -51,3 +51,6 @@ insert into jt1n.blog_category (category_name) values('angular')
 
 select category_id, category_name, category_date 
 from jt1n.blog_category
+
+insert into jt1n.blog_user (user_account,user_password) values('tang','123');
+select * from jt1n.blog_user

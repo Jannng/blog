@@ -20,4 +20,6 @@ public interface ArticleMapper {
     Article getArticleById(@Param("articleId") Long articleId);
 
     ArrayList<Article> getArticlesByUser(@Param("userId") Long userId);
+
+    ArrayList<Article> getArticleList();
 }

@@ -1,1 +1,30 @@
-<p>article-list works!</p>
+<div class="container">
+    <!-- 导航栏 -->
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link" href="#">Active</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link " routerLink="/write">写文章</a>
+    </li>
+  </ul>
+
+  <!-- 文章列表 -->
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-action list-group-item-info"
+        *ngFor="let article of articles"
+    >
+    <a routerLink="/detail/{{article['articleId']}}">
+      {{article['articleTitle']}}
+    </a>
+  </li>
+  
+    
+  </ul>
+</div>

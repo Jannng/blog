@@ -15,4 +15,10 @@
         (user_id, article_title, article_content, article_views, category_id, article_comment_count)
         values(#{userId}, #{articleTitle}, #{articleContent}, #{articleViews}, #{categoryId}, #{articleCommentCount})
     </insert>
+
+    <select id="getArticleList" resultType="com.newegg.mis.mps.blog.pojo.Article">
+        select article_id, article_title, article_content, article_comment_count, article_views,article_date,c.category_name,user_account
+        from jt1n.blog_articles a left join jt1n.blog_category c on a.category_id = c.category_id
+        left join jt1n.blog_user u on a.user_id = u.user_id
+    </select>
 </mapper>

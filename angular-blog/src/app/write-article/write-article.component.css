@@ -1,0 +1,9 @@
+.container .input-group input {
+  width: 80%;
+}
+
+textarea {
+  border: 0;
+  color: #666464;
+  height: 750px;
+}

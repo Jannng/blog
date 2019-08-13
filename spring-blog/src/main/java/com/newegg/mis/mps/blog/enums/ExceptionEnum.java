@@ -5,7 +5,8 @@ package com.newegg.mis.mps.blog.enums;
  */
 public enum ExceptionEnum {
     FAIL_CREATE(-1, "创建失败"),
-    LOGIN_WRONG(-2, "用户名或者密码错误");
+    LOGIN_WRONG(-2, "用户名或者密码错误"),
+    EMPTY(-3,"查询为空");
 
     ExceptionEnum(int code, String msg) {
         this.code = code;

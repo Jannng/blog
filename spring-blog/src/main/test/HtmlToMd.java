@@ -16,7 +16,7 @@ import java.util.Arrays;
 public class HtmlToMd {
     @Test
     public void markdown2Html(){
-        String html = parse("## test");
+        String html = parse("- test");
         System.out.println(html);
     }
 
