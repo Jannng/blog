@@ -1,2 +1,15 @@
-<router-outlet></router-outlet>
+<!-- 导航栏 -->
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/login">登录</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/articleList">文章列表</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link " routerLink="/write">写文章</a>
+  </li>
+  <button class="btn btn-link" (click)="logout()">退出登录</button>
+</ul>
 
+<router-outlet></router-outlet>

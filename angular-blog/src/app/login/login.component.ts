@@ -1,13 +1,9 @@
 import {
   Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  Input,
-  Renderer,
-  Renderer2
+  OnInit
 } from "@angular/core";
 import { LoginService } from "../services/login.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-login",
@@ -15,17 +11,41 @@ import { LoginService } from "../services/login.service";
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-  constructor(
-    private loginService: LoginService,
-  ) {}
+  constructor(private loginService: LoginService, private router: Router) {}
 
   ngOnInit() {}
 
-
   userAccount: string;
   userPassword: string;
+  registerAccount: string;
+  registerPassword: string;
 
   login() {
-    this.loginService.login(this.userAccount, this.userPassword);
+    this.loginService.login(this.userAccount, this.userPassword).subscribe(
+      data => {
+        let code: number = data["code"];
+        if (code == 0) {
+          this.router.navigateByUrl("/articleList");
+        } else {
+          alert(data["msg"]);
+          this.router.navigateByUrl("/login");
+        }
+      },
+      error => {
+        alert("用户名或密码错误");
+      }
+    );
+  }
+
+  register() {
+    this.loginService
+      .register(this.registerAccount, this.registerPassword)
+      .subscribe(data => {
+        if (data["code"] == 0) {
+          alert("注册成功");
+          this.registerAccount="";
+          this.registerPassword="";
+        }
+      });
   }
 }

@@ -16,7 +16,7 @@ public class Article {
 
     private Long articleViews;
 
-    private Long category_id;
+    private Long categoryId;
 
     private Long articleCommentCount;
 
@@ -66,12 +66,12 @@ public class Article {
         this.articleViews = articleViews;
     }
 
-    public Long getCategory_id() {
-        return category_id;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory_id(Long category_id) {
-        this.category_id = category_id;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
     public Long getArticleCommentCount() {
@@ -114,7 +114,7 @@ public class Article {
                 ", articleTitle='" + articleTitle + '\'' +
                 ", articleContent='" + articleContent + '\'' +
                 ", articleViews=" + articleViews +
-                ", category_id=" + category_id +
+                ", categoryId=" + categoryId +
                 ", articleCommentCount=" + articleCommentCount +
                 ", articleDate=" + articleDate +
                 ", categoryName='" + categoryName + '\'' +

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+        <mapper namespace="com.newegg.mis.mps.blog.mapper.CommentMapper">
+    <insert id="insertComment" parameterType="com.newegg.mis.mps.blog.pojo.Comment">
+        insert into jt1n.blog_comments
+        (user_id,article_id,comment_content)
+        values (#{userId},#{articleId},#{commentContent})
+    </insert>
+
+    <select id="getCommentListByArticle" resultType="com.newegg.mis.mps.blog.pojo.Comment">
+        select comment_id,comment_content,c.user_id,u.user_account as comment_name,comment_date,article_id
+        from jt1n.blog_comments c
+        left join jt1n.blog_user u on c.user_id = u.user_id
+        where article_id = #{articleId}
+    </select>
+
+</mapper>

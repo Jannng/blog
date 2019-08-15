@@ -24,7 +24,6 @@ CREATE TABLE jt1n.[blog_comments](
 	article_id bigint not null,
 	comment_content text not null,
 	comment_date datetime default getdate(),
-	parent_comment_id bigint not null
 )
 
 CREATE TABLE jt1n.[blog_category](
@@ -53,4 +52,12 @@ select category_id, category_name, category_date
 from jt1n.blog_category
 
 insert into jt1n.blog_user (user_account,user_password) values('tang','123');
-select * from jt1n.blog_user
+
+select * from jt1n.blog_articles
+
+insert into jt1n.blog_comments (user_id,article_id,comment_content) values (1,1,N'wow~~~~~~')
+
+select comment_id,comment_content,c.user_id,u.user_account as comment_name,comment_date,article_id 
+from jt1n.blog_comments c
+left join jt1n.blog_user u on c.user_id = u.user_id
+where article_id = 1

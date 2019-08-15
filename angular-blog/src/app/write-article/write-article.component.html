@@ -1,16 +1,27 @@
 <div class="container">
-  <div class="input-group">
-    <input
-      type="text"
+  <h1>写点什么..</h1>
+  <form #articleFrom="ngForm">
+    <div class="input-group">
+      <input
+        type="text"
+        class="form-control"
+        aria-label="Text input with dropdown button"
+        placeholder="标题"
+        [(ngModel)]="title"
+        name="title"
+      />
+      <select class="custom-select" (change)="getChange($event.target.value)">
+        <option value="" style="display: none">选择分类</option>
+        <option value="{{c['categoryId']}}" *ngFor="let c of categories">{{c['categoryName']}}</option>
+      </select>
+    </div>
+    <textarea
       class="form-control"
-      aria-label="Text input with dropdown button"
-    />
-    <select class="custom-select" id="inputGroupSelect01">
-      <option selected>Choose...</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
-    </select>
-  </div>
-  <textarea class="form-control"  rows="3"></textarea>
+      rows="3"
+      placeholder="你在想什么.."
+      [(ngModel)]="content"
+      name="content"
+    ></textarea>
+    <button class="btn btn-primary" (click)="publish()">发布</button>
+  </form>
 </div>

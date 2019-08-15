@@ -11,4 +11,8 @@ public interface ArticleService {
     ArrayList<Article> getArticleList();
 
     Article getArticleById(Long id);
+
+    Integer insertArticle(Article article);
+
+    Integer view(Long articleId);
 }

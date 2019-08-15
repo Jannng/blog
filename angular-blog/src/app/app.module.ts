@@ -13,6 +13,10 @@ import { LoginService } from './services/login.service';
 import { ArticleService } from './services/article.service';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
 import { WriteArticleComponent } from './write-article/write-article.component';
+import { CategoryService } from './services/category.service';
+import { CommentListComponent } from './comment-list/comment-list.component';
+import { CommentDetailComponent } from './comment-detail/comment-detail.component';
+import { CommentService } from './services/comment.service';
 
 const appRoutes: Routes = [
   { path: "login", component: LoginComponent },
@@ -31,7 +35,9 @@ const appRoutes: Routes = [
     ArticleListComponent,
     PageNotFoundComponent,
     ArticleDetailComponent,
-    WriteArticleComponent
+    WriteArticleComponent,
+    CommentListComponent,
+    CommentDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +45,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule
   ],
-  providers: [LoginService, ArticleService,Location],
+  providers: [LoginService, ArticleService,Location,CategoryService,CommentService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,0 +1,4 @@
+<ul class="list-unstyled" *ngIf="comments">
+  <app-comment-detail [comments]='comments'></app-comment-detail>
+  <div *ngIf="!comments">Loading..</div>
+</ul>

@@ -16,7 +16,7 @@ import java.util.Collections;
  */
 @RestController
 @RequestMapping("article")
-@CrossOrigin
+@CrossOrigin(allowCredentials = "true")
 public class ArticleController {
     @Autowired
     ArticleService articleService;
@@ -40,4 +40,30 @@ public class ArticleController {
             throw new ControllerException(ExceptionEnum.EMPTY);
         }
     }
+
+    @PostMapping("/publish")
+    public ResultBean publish(@RequestBody Article article){
+        Integer result;
+        try {
+             result = articleService.insertArticle(article);
+        }catch (ControllerException e){
+            throw e;
+        }
+        if (result > 0){
+            return ResultBean.success();
+        }else {
+            throw new ControllerException(ExceptionEnum.FAIL_CREATE);
+        }
+    }
+
+    @GetMapping("/view/{id}")
+    public ResultBean view(@PathVariable("id") Long articleId){
+        Integer result = articleService.view(articleId);
+        if (result > 0){
+            return ResultBean.success();
+        }else {
+            throw new ControllerException(ExceptionEnum.EMPTY);
+        }
+    }
+
 }

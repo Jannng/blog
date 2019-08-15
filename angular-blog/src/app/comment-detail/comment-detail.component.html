@@ -1,0 +1,7 @@
+<li class="media" *ngFor="let c of comments">
+  <div class="media-body">
+    <h5 class="mt-0 mb-1">{{c["commentName"]}}说：</h5>
+    <p>{{c["commentContent"]}}</p>
+    <small>{{c["commentDate"] | date:'yyyy-MM-dd'}}</small>
+  </div>
+</li>
