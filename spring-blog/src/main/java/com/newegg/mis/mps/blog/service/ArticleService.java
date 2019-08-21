@@ -2,6 +2,7 @@ package com.newegg.mis.mps.blog.service;
 
 import com.newegg.mis.mps.blog.pojo.Article;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -15,4 +16,10 @@ public interface ArticleService {
     Integer insertArticle(Article article);
 
     Integer view(Long articleId);
+
+    ArrayList<Article> getArticleByUser();
+
+    Integer update(Article article);
+
+    Integer delete(String ids);
 }

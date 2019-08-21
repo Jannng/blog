@@ -26,13 +26,12 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/user")
 @CrossOrigin(allowCredentials = "true",origins = "http://localhost:4200")
 public class UserContoller {
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     UserService userService;
 
     @PostMapping("/register")
-    public ResultBean register(@RequestBody User user){
+    public ResultBean<Integer> register(@RequestBody User user){
         Integer result = userService.register(user);
         if (result == 1){
             return ResultBean.success();
@@ -42,7 +41,7 @@ public class UserContoller {
     }
 
     @PostMapping("/login")
-    public ResultBean login(@RequestBody User user){
+    public ResultBean<User> login(@RequestBody User user){
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token =
                 new UsernamePasswordToken(user.getUserAccount(),user.getUserPassword());
@@ -55,7 +54,7 @@ public class UserContoller {
     }
 
     @GetMapping("/logout")
-    public ResultBean logout(){
+    public ResultBean<Integer> logout(){
         Subject subject = SecurityUtils.getSubject();
         if (subject.isAuthenticated()){
             subject.logout();
@@ -64,7 +63,7 @@ public class UserContoller {
     }
 
     @GetMapping("/isLogin")
-    public ResultBean isLogin(){
+    public ResultBean<Integer> isLogin(){
         Subject subject = SecurityUtils.getSubject();
         if (subject.isAuthenticated()){
             return ResultBean.success();

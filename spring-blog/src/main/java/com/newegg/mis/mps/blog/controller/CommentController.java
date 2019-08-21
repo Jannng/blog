@@ -21,7 +21,7 @@ public class CommentController {
     CommentService commentService;
 
     @GetMapping("/list/{id}")
-    public ResultBean getList(@PathVariable("id") Long articleId){
+    public ResultBean<Comment> getList(@PathVariable("id") Long articleId){
         ArrayList<Comment> comments = commentService.getCommentListByArticle(articleId);
         if (comments == null){
             throw new ControllerException(ExceptionEnum.EMPTY);
@@ -31,7 +31,7 @@ public class CommentController {
     }
 
     @PostMapping("/publish")
-    public ResultBean publishComment(@RequestBody Comment comment){
+    public ResultBean<Integer> publishComment(@RequestBody Comment comment){
         Integer result;
         try{
             result = commentService.insertComment(comment);

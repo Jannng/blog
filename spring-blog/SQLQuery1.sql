@@ -22,7 +22,7 @@ CREATE TABLE jt1n.[blog_comments](
 	comment_id bigint identity(1,1) primary key not null,
 	user_id bigint not null,
 	article_id bigint not null,
-	comment_content text not null,
+	comment_content ntext not null,
 	comment_date datetime default getdate(),
 )
 
@@ -61,3 +61,17 @@ select comment_id,comment_content,c.user_id,u.user_account as comment_name,comme
 from jt1n.blog_comments c
 left join jt1n.blog_user u on c.user_id = u.user_id
 where article_id = 1
+
+update jt1n.blog_articles set article_views = article_views + 1 where article_id = 1
+
+select * from jt1n.blog_user
+
+delete from jt1n.blog_user where user_id = 6
+
+
+
+
+
+
+
+

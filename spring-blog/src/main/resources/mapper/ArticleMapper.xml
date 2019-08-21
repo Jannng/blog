@@ -22,8 +22,32 @@
         left join jt1n.blog_user u on a.user_id = u.user_id
     </select>
 
+    <select id="getArticlesByUser" resultType="com.newegg.mis.mps.blog.pojo.Article">
+        select article_id, article_title, article_content, article_comment_count, article_views,article_date,c.category_name,user_account
+        from jt1n.blog_articles a left join jt1n.blog_category c on a.category_id = c.category_id
+        left join jt1n.blog_user u on a.user_id = u.user_id
+        where a.user_id = #{userId}
+    </select>
+
     <update id="view" >
         if  exists (select 1 from jt1n.blog_articles where article_id = #{articleId})
         update jt1n.blog_articles set article_views = article_views + 1 where article_id = #{articleId}
     </update>
+
+    <update id="updateArticle" parameterType="com.newegg.mis.mps.blog.pojo.Article">
+        update jt1n.blog_articles
+        set
+        article_title = #{articleTitle},
+        article_content = #{articleContent}
+        where article_id = #{articleId} and user_id = #{userId}
+    </update>
+
+    <delete id="deleteArticle">
+        delete from jt1n.blog_articles
+        where article_id in
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+        and user_id = #{userId}
+    </delete>
 </mapper>

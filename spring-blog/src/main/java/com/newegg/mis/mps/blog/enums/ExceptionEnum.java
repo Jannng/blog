@@ -7,7 +7,8 @@ public enum ExceptionEnum {
     FAIL_CREATE(-1, "创建失败"),
     LOGIN_WRONG(-2, "用户名或者密码错误"),
     EMPTY(-3,"查询为空"),
-    NOT_LOGIN(-4,"没有登录");
+    NOT_LOGIN(-4,"没有登录"),
+    OPERATION_FAILURE(-5,"操作失败");
 
     ExceptionEnum(int code, String msg) {
         this.code = code;

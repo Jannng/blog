@@ -33,10 +33,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Integer insertArticle(Article article) {
-        User user = (User) SecurityUtils.getSubject().getPrincipal();
-        if (user == null){
-            throw new ControllerException(ExceptionEnum.NOT_LOGIN);
-        }
+        User user = isLogin();
         article.setUserId(user.getUserId());
         article.setArticleViews(0L);
         article.setArticleCommentCount(0L);
@@ -46,5 +43,45 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public Integer view(Long articleId) {
         return articleMapper.view(articleId);
+    }
+
+    @Override
+    public ArrayList<Article> getArticleByUser() {
+        User user = isLogin();
+        return articleMapper.getArticlesByUser(user.getUserId());
+    }
+
+    @Override
+    public Integer update(Article article) {
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        if (user == null){
+            throw new ControllerException(ExceptionEnum.NOT_LOGIN);
+        }
+        article.setUserId(user.getUserId());
+        return articleMapper.updateArticle(article);
+    }
+
+    @Override
+    public Integer delete(String ids) {
+        User user = isLogin();
+        String[] split = ids.split(",");
+        Long[] idsL = new Long[split.length];
+        for (int i = 0; i < split.length; i++) {
+            idsL[i] = Long.parseLong(split[i]);
+        }
+        return articleMapper.deleteArticle(idsL,user.getUserId());
+
+    }
+
+    /**
+     * 判断当前用户是否登录，登陆就返回 User
+     * @return
+     */
+    private User isLogin(){
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        if (user == null){
+            throw new ControllerException(ExceptionEnum.NOT_LOGIN);
+        }
+        return user;
     }
 }

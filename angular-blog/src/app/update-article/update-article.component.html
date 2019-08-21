@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>修改..</h1>
+  <form #articleFrom="ngForm" *ngIf="article">
+    <div class="input-group">
+      <input
+        type="text"
+        class="form-control"
+        aria-label="Text input with dropdown button"
+        [(ngModel)]="title"
+        name="title"
+      />
+    </div>
+    <textarea
+      class="form-control"
+      rows="3"
+      [(ngModel)]="content"
+      name="content"
+    ></textarea>
+    <button class="btn btn-primary" (click)="update()">修改</button>
+  </form>
+</div>

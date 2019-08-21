@@ -1,7 +1,4 @@
-import {
-  Component,
-  OnInit
-} from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { LoginService } from "../services/login.service";
 import { Router } from "@angular/router";
 
@@ -21,8 +18,9 @@ export class LoginComponent implements OnInit {
   registerPassword: string;
 
   login() {
-    this.loginService.login(this.userAccount, this.userPassword).subscribe(
-      data => {
+    this.loginService
+      .login(this.userAccount, this.userPassword)
+      .subscribe(data => {
         let code: number = data["code"];
         if (code == 0) {
           this.router.navigateByUrl("/articleList");
@@ -30,11 +28,7 @@ export class LoginComponent implements OnInit {
           alert(data["msg"]);
           this.router.navigateByUrl("/login");
         }
-      },
-      error => {
-        alert("用户名或密码错误");
-      }
-    );
+      });
   }
 
   register() {
@@ -43,8 +37,8 @@ export class LoginComponent implements OnInit {
       .subscribe(data => {
         if (data["code"] == 0) {
           alert("注册成功");
-          this.registerAccount="";
-          this.registerPassword="";
+          this.registerAccount = "";
+          this.registerPassword = "";
         }
       });
   }

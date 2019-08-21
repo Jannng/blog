@@ -24,7 +24,7 @@ public class CategoryController {
     CategoryService categoryService;
 
     @GetMapping("list")
-    public ResultBean getAllCategory(){
+    public ResultBean<Category> getAllCategory(){
         ArrayList<Category> categories = categoryService.getAllCategory();
         if (categories != null){
             return ResultBean.success(categories);

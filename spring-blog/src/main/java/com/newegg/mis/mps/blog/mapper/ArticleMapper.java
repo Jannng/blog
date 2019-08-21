@@ -15,7 +15,7 @@ public interface ArticleMapper {
 
     Integer updateArticle(Article article);
 
-    Integer deleteArticle(@Param("ids") String ids);
+    Integer deleteArticle(@Param("ids") Long[] ids, @Param("userId") Long userId);
 
     Article getArticleById(@Param("articleId") Long articleId);
 

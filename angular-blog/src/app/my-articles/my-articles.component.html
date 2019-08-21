@@ -1,0 +1,23 @@
+<div class="container">
+  <!-- 文章列表 -->
+  <ul class="list-group" *ngIf="articles">
+    <li
+      class="list-group-item list-group-item-action list-group-item-info"
+      *ngFor="let article of articles"
+    >
+      <div class="title">
+        <a routerLink="/detail/{{ article['articleId'] }}">
+          {{ article["articleTitle"] }}
+        </a>
+        <small>
+          发表时间：{{ article["articleDate"] | date: "yyyy-MM-dd" }}
+          </small>
+        <div class="actions">
+          <button class="btn btn-link" routerLink="/update/{{article['articleId']}}">修改</button>
+          <button class="btn btn-link" (click)="delete(article.articleId)">删除</button>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <h2 *ngIf="!articles">还没有写过文章</h2>
+</div>
